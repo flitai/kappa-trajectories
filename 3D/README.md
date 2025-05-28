@@ -1,25 +1,25 @@
-# 三维航点等长轨迹的$\kappa$求解C++实现
+# 三维航点等长轨迹的κ求解C++实现
 
 本代码主要实现内容包括：
 
 1.  接收三维航点 $\mathbf{w}_{i-1}, \mathbf{w}_i, \mathbf{w}_{i+1}$ 作为输入。
 2.  基于这些三维航点计算转向角 $\beta$。这个角度是在由这三个点定义的平面内的。
-3.  计算出一个标量参数 $\kappa^*$。这个 $\kappa^*$ 的目标是使得后续由 DTS（Dynamically Time-Scaled）算法生成的实际 $\kappa$-轨迹的**路径长度**与原始分段直线路径的长度一致。
+3.  计算出一个标量参数κ*。这个κ* 的目标是使得后续由 DTS（Dynamically Time-Scaled）算法生成的实际 κ-轨迹的**路径长度**与原始分段直线路径的长度一致。
 
-这个算法的核心是**求解参数 $\kappa^*$**。
+这个算法的核心是**求解参数κ***。
 
-之后，这个计算出来的 $\kappa^*$ 会被传递给 DTS 控制律，由 DTS 系统利用这个 $\kappa^*$ 来**生成实际的平滑转弯路径**。
+之后，这个计算出来的κ* 会被传递给 DTS 控制律，由 DTS 系统利用这个κ* 来**生成实际的平滑转弯路径**。
 
-**如果原始航点是三维的，那么 DTS 系统生成的这个 $\kappa$-轨迹也将在三维空间中**。每个转弯部分（由三个连续航点定义）将在包含这三个点的平面内进行平滑。由于连续的转弯平面可能不同，整个轨迹将是三维的。
+**如果原始航点是三维的，那么 DTS 系统生成的这个 κ-轨迹也将在三维空间中**。每个转弯部分（由三个连续航点定义）将在包含这三个点的平面内进行平滑。由于连续的转弯平面可能不同，整个轨迹将是三维的。
 
 功能要点总结：
 
-* 该 C++ 代码：输入三维航点，输出一个用于长度匹配的**标量参数 $\kappa^*$**。
-* DTS 系统（未在此代码中实现）：输入 $\kappa^*$ 和航点等信息，输出实际的**三维平滑曲线**。
+* 该 C++ 代码：输入三维航点，输出一个用于长度匹配的**标量参数κ***。
+* DTS 系统（未在此代码中实现）：输入κ* 和航点等信息，输出实际的**三维平滑曲线**。
 
 
 
-This code will define a class `KappaTrajectorySolver` that encapsulates the logic for calculating $\kappa^*$
+This code will define a class `KappaTrajectorySolver` that encapsulates the logic for calculatingκ*
 
 
 **关键组件和特性：**
@@ -49,7 +49,7 @@ This code will define a class `KappaTrajectorySolver` that encapsulates the logi
    ```cpp
    KappaTrajectorySolver kappa_solver;
    ```
-3. **调用 `findKappaStar`**：当需为由三点定义的转弯段计算 $\kappa^*$ 时：
+3. **调用 `findKappaStar`**：当需为由三点定义的转弯段计算κ* 时：
 
    ```cpp
    // 假设你有符合 Point3D 接口的航点
