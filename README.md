@@ -1,8 +1,13 @@
-# 等长轨迹的κ求解
+## kappa-trajectories生成
 
-本代码主要实现内容包括：
+这是一个基于 C++ 实现的无人机（UAV）平滑转弯轨迹生成模块。它根据 E. Anderson, R. Beard, T. McLain 在论文 "Real-time dynamic trajectory smoothing for unmanned aerial vehicles" 中提出的 $\\kappa$-轨迹几何定义，在给定的三个航路点之间生成平滑的转弯路径。该模块特别考虑了参数 $\\kappa=0$（路径通过中间航点）和 $\\kappa=1$（最短时间/单圆弧转弯）的特殊情况。
 
-1.  接收二维或三维航点 $\mathbf{w}_{i-1}, \mathbf{w}_i, \mathbf{w}_{i+1}$ 作为输入。
+
+## 等长轨迹的κ求解
+
+代码主要实现内容包括：
+
+1.  接收二维(2D)或三维(3D)航点 $\mathbf{w}_{i-1}, \mathbf{w}_i, \mathbf{w}_{i+1}$ 作为输入。
 2.  基于这些航点计算转向角 β。这个角度是在由这三个航点定义的平面内的。
 3.  计算出一个标量参数 κ*。这个 κ* 的目标是使得后续由 DTS（Dynamically Time-Scaled）算法生成的实际 κ-轨迹的**路径长度**与原始分段直线路径的长度一致。
 
@@ -19,3 +24,5 @@
 
 
 本C++代码提供了一个模块化的稳健起点，请务必在仿真环境中对多种航点配置进行充分测试。
+
+
